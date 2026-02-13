@@ -164,6 +164,88 @@ select:focus, input:focus {
     cursor: not-allowed;
 }
 
+/* Add-ons section */
+.addons-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.addon-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.addon-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.addon-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.addon-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addon-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.addon-price {
+    color: #ff4081;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Price summary box */
+.price-summary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.price-summary h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.price-row.total {
+    border-bottom: none;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255,255,255,0.5);
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
 /* WhatsApp floating button */
 .whatsapp-float {
     position: fixed;
@@ -262,6 +344,12 @@ footer {
         width: 100%;
     }
     
+    .addon-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
     .whatsapp-float {
         bottom: 15px;
         right: 15px;
@@ -326,36 +414,215 @@ h2, h3 {
     </div>
 
     <div class="form-section">
+        <label>Number of Members <span class="required">*</span></label>
+        <select id="memberCount" required onchange="updateBasePrice()">
+            <option value="">Select number of members...</option>
+            <option value="2" data-price="1299">2 Members - ₹1299</option>
+            <option value="3" data-price="1499">3 Members - ₹1499</option>
+            <option value="4" data-price="1499">4 Members - ₹1499</option>
+            <option value="5" data-price="1799">5 Members - ₹1799</option>
+            <option value="6" data-price="1799">6 Members - ₹1799</option>
+            <option value="7" data-price="1999">7 Members - ₹1999</option>
+            <option value="9" data-price="2199">9 Members - ₹2199</option>
+            <option value="10" data-price="2399">10 Members - ₹2399</option>
+            <option value="11" data-price="2599">11 Members - ₹2599</option>
+            <option value="12" data-price="2799">12 Members - ₹2799</option>
+            <option value="13" data-price="2999">13 Members - ₹2999</option>
+            <option value="14" data-price="3199">14 Members - ₹3199</option>
+            <option value="15" data-price="3399">15 Members - ₹3399</option>
+            <option value="16" data-price="3599">16 Members - ₹3599</option>
+            <option value="17" data-price="3799">17 Members - ₹3799</option>
+            <option value="18" data-price="3999">18 Members - ₹3999</option>
+            <option value="19" data-price="4199">19 Members - ₹4199</option>
+            <option value="20" data-price="4399">20 Members - ₹4399</option>
+            <option value="25" data-price="5400">25 Members - ₹5400</option>
+        </select>
+    </div>
+
+    <div class="form-section">
         <label>Select Date <span class="required">*</span></label>
         <input type="date" id="datePicker" required>
     </div>
 
     <div class="form-section">
-        <label>Available Time Slots (2 Hours Each) <span class="required">*</span></label>
+        <label>Available Time Slots (2.5 Hours Each) <span class="required">*</span></label>
         
-        <div class="slot" data-slot="10:00 AM - 12:00 PM">
-            <span class="slot-time">⏰ 10:00 AM - 12:00 PM</span>
+        <div class="slot" data-slot="10:00 AM - 12:30 PM">
+            <span class="slot-time">⏰ 10:00 AM - 12:30 PM</span>
             <button onclick="selectSlot(this)">Select</button>
         </div>
 
-        <div class="slot" data-slot="12:30 PM - 02:30 PM">
-            <span class="slot-time">⏰ 12:30 PM - 02:30 PM</span>
+        <div class="slot" data-slot="01:00 PM - 03:30 PM">
+            <span class="slot-time">⏰ 01:00 PM - 03:30 PM</span>
             <button onclick="selectSlot(this)">Select</button>
         </div>
 
-        <div class="slot" data-slot="03:00 PM - 05:00 PM">
-            <span class="slot-time">⏰ 03:00 PM - 05:00 PM</span>
+        <div class="slot" data-slot="04:00 PM - 06:30 PM">
+            <span class="slot-time">⏰ 04:00 PM - 06:30 PM</span>
             <button onclick="selectSlot(this)">Select</button>
         </div>
 
-        <div class="slot" data-slot="05:30 PM - 07:30 PM">
-            <span class="slot-time">⏰ 05:30 PM - 07:30 PM</span>
+        <div class="slot" data-slot="07:00 PM - 09:30 PM">
+            <span class="slot-time">⏰ 07:00 PM - 09:30 PM</span>
             <button onclick="selectSlot(this)">Select</button>
         </div>
+    </div>
 
-        <div class="slot" data-slot="08:00 PM - 10:00 PM">
-            <span class="slot-time">⏰ 08:00 PM - 10:00 PM</span>
-            <button onclick="selectSlot(this)">Select</button>
+    <!-- Add-ons Section -->
+    <div id="addonsSection" class="addons-section hidden">
+        <h3>✨ Select Add-Ons (Optional)</h3>
+        
+        <div class="addon-item">
+            <input type="checkbox" id="addon1" data-price="20" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">LED Letters (Each 20rs)</span>
+                <span class="addon-price">₹20</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon2" data-price="100" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Love/Baby Box</span>
+                <span class="addon-price">₹100</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon3" data-price="100" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">LED Board Name</span>
+                <span class="addon-price">₹100</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon4" data-price="150" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Rose Petals with Symbol</span>
+                <span class="addon-price">₹150</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon5" data-price="200" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Bubbles Entry</span>
+                <span class="addon-price">₹200</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon6" data-price="200" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Floor Balloons</span>
+                <span class="addon-price">₹200</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon7" data-price="120" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Lighting Crown</span>
+                <span class="addon-price">₹120</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon8" data-price="1300" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Smoke Entry</span>
+                <span class="addon-price">₹1300</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon9" data-price="1500" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Balloon Decoration</span>
+                <span class="addon-price">₹1500</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon10" data-price="1800" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Balloon Decoration (Mixed Balloons)</span>
+                <span class="addon-price">₹1800</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon11" data-price="2000" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Balloon Decoration (Chrome Balloons)</span>
+                <span class="addon-price">₹2000</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon12" data-price="30" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Prince Crown</span>
+                <span class="addon-price">₹30</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon13" data-price="50" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Birthday Cake Stick</span>
+                <span class="addon-price">₹50</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon14" data-price="60" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Birthday Ribbon</span>
+                <span class="addon-price">₹60</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon15" data-price="1200" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Butterfly Stand Neon Light Set</span>
+                <span class="addon-price">₹1200</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon16" data-price="1000" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">Bulb Light Stand</span>
+                <span class="addon-price">₹1000</span>
+            </div>
+        </div>
+
+        <div class="addon-item">
+            <input type="checkbox" id="addon17" data-price="500" onchange="updateTotal()">
+            <div class="addon-info">
+                <span class="addon-name">DJ Lights</span>
+                <span class="addon-price">₹500</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Price Summary -->
+    <div id="priceSummary" class="price-summary hidden">
+        <h3>💰 Price Summary</h3>
+        <div class="price-row">
+            <span>Base Price:</span>
+            <span id="basePrice">₹0</span>
+        </div>
+        <div class="price-row">
+            <span>Add-ons:</span>
+            <span id="addonsPrice">₹0</span>
+        </div>
+        <div class="price-row total">
+            <span>Total Amount:</span>
+            <span id="totalPrice">₹0</span>
         </div>
     </div>
 
@@ -379,13 +646,8 @@ h2, h3 {
         </div>
 
         <div class="form-section">
-            <label>Number of Guests (Approximate)</label>
-            <input type="number" id="guestCount" placeholder="e.g., 50" min="1">
-        </div>
-
-        <div class="form-section">
             <label>Special Requirements (Optional)</label>
-            <input type="text" id="specialRequirements" placeholder="Any special decorations, themes, etc.">
+            <input type="text" id="specialRequirements" placeholder="Any special themes, decorations, etc.">
         </div>
 
         <button class="btn-primary" onclick="sendToWhatsApp()">
@@ -409,6 +671,8 @@ h2, h3 {
 let selectedSlot = null;
 let selectedDate = null;
 let selectedCelebrationType = null;
+let basePrice = 0;
+let addonsPrice = 0;
 
 // Initialize date picker with minimum date as today
 document.getElementById('datePicker').min = new Date().toISOString().split('T')[0];
@@ -424,12 +688,39 @@ document.getElementById('celebrationType').addEventListener('change', function()
     selectedCelebrationType = this.value;
 });
 
+function updateBasePrice() {
+    const memberSelect = document.getElementById('memberCount');
+    const selectedOption = memberSelect.options[memberSelect.selectedIndex];
+    basePrice = parseInt(selectedOption.getAttribute('data-price')) || 0;
+    updateTotal();
+}
+
+function updateTotal() {
+    // Calculate add-ons total
+    addonsPrice = 0;
+    const checkboxes = document.querySelectorAll('.addon-item input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        addonsPrice += parseInt(checkbox.getAttribute('data-price')) || 0;
+    });
+
+    // Update display
+    document.getElementById('basePrice').textContent = '₹' + basePrice;
+    document.getElementById('addonsPrice').textContent = '₹' + addonsPrice;
+    document.getElementById('totalPrice').textContent = '₹' + (basePrice + addonsPrice);
+}
+
 function selectSlot(button) {
     const celebrationType = document.getElementById('celebrationType').value;
+    const memberCount = document.getElementById('memberCount').value;
     const date = document.getElementById('datePicker').value;
     
     if (!celebrationType) {
         alert('⚠️ Please select celebration type first');
+        return;
+    }
+    
+    if (!memberCount) {
+        alert('⚠️ Please select number of members first');
         return;
     }
     
@@ -455,11 +746,16 @@ function selectSlot(button) {
     button.textContent = 'Selected';
     button.style.background = 'linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%)';
 
-    // Show customer form
+    // Show add-ons, price summary and customer form
+    document.getElementById('addonsSection').classList.remove('hidden');
+    document.getElementById('priceSummary').classList.remove('hidden');
     document.getElementById('customerForm').classList.remove('hidden');
     
-    // Scroll to form
-    document.getElementById('customerForm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Initialize price display
+    updateTotal();
+    
+    // Scroll to add-ons
+    document.getElementById('addonsSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function sendToWhatsApp() {
@@ -467,9 +763,9 @@ function sendToWhatsApp() {
     const name = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('customerPhone').value.trim();
     const alternatePhone = document.getElementById('alternatePhone').value.trim();
-    const guests = document.getElementById('guestCount').value.trim();
     const specialReq = document.getElementById('specialRequirements').value.trim();
     const celebrationType = document.getElementById('celebrationType').value;
+    const memberCount = document.getElementById('memberCount').value;
     const date = document.getElementById('datePicker').value;
 
     // Validation
@@ -483,7 +779,6 @@ function sendToWhatsApp() {
         return;
     }
 
-    // Validate alternate phone if provided
     if (alternatePhone && (alternatePhone.length !== 10 || !/^[0-9]+$/.test(alternatePhone))) {
         alert('⚠️ Alternate phone number must be 10 digits');
         return;
@@ -491,6 +786,11 @@ function sendToWhatsApp() {
 
     if (!celebrationType) {
         alert('⚠️ Please select celebration type');
+        return;
+    }
+
+    if (!memberCount) {
+        alert('⚠️ Please select number of members');
         return;
     }
 
@@ -513,6 +813,19 @@ function sendToWhatsApp() {
         day: 'numeric' 
     });
 
+    // Get selected add-ons
+    let addonsText = '';
+    const checkboxes = document.querySelectorAll('.addon-item input[type="checkbox"]:checked');
+    if (checkboxes.length > 0) {
+        addonsText = '\n\n✨ *Selected Add-Ons:*\n';
+        checkboxes.forEach(checkbox => {
+            const addonItem = checkbox.parentElement;
+            const addonName = addonItem.querySelector('.addon-name').textContent;
+            const addonPrice = addonItem.querySelector('.addon-price').textContent;
+            addonsText += `• ${addonName} - ${addonPrice}\n`;
+        });
+    }
+
     // Create WhatsApp message
     const message = `🎉 *NEW BOOKING REQUEST*
 
@@ -521,23 +834,29 @@ function sendToWhatsApp() {
 ${alternatePhone ? `📱 *Alternate Phone:* ${alternatePhone}` : ''}
 
 🎊 *Celebration Type:* ${celebrationType}
+👥 *Number of Members:* ${memberCount}
 📅 *Date:* ${formattedDate}
 ⏰ *Time Slot:* ${selectedSlot}
-👥 *Guests:* ${guests || 'Not specified'}
-${specialReq ? `📝 *Special Requirements:* ${specialReq}` : ''}
+${addonsText}
+
+💰 *PRICING:*
+Base Price: ₹${basePrice}
+Add-ons Total: ₹${addonsPrice}
+*Total Amount: ₹${basePrice + addonsPrice}*
+${specialReq ? `\n📝 *Special Requirements:* ${specialReq}` : ''}
 
 _Sent from discopartymahal.github.io_`;
 
     // Encode message for URL
     const encodedMessage = encodeURIComponent(message);
     
-    // Your WhatsApp number (replace with your actual number)
+    // Your WhatsApp number
     const whatsappNumber = '916304464961';
     
     // Create WhatsApp URL
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
-    // Save booking locally (optional - for tracking)
+    // Save booking locally
     saveBookingLocally(date, selectedSlot, name, phone);
     
     // Open WhatsApp
@@ -591,4 +910,3 @@ window.addEventListener('load', function() {
 
 </body>
 </html>
-
